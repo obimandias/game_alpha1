@@ -106,5 +106,5 @@ animation = &"front"
 script = ExtResource("7_1vwm8")
 
 [node name="Level1+1" type="Sprite2D" parent="."]
-position = Vector2(960, 541)
+position = Vector2(890, 552)
 texture = ExtResource("18_yjdba")

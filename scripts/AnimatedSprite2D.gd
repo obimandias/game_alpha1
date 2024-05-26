@@ -14,6 +14,7 @@ func _ready():
 func _input(event):
 
 	if event is InputEventKey:
+		print(last_direction)
 		match event.keycode:
 			KEY_RIGHT:
 				if last_direction == Vector2.LEFT:
@@ -22,6 +23,8 @@ func _input(event):
 				else:
 					self.animation = "running"
 					self.flip_h = false
+					
+				last_direction = Vector2.RIGHT
 			KEY_UP:
 				self.animation = "front"
 			KEY_DOWN:
@@ -33,6 +36,9 @@ func _input(event):
 				else:
 					self.animation = "running"
 					self.flip_h = true
+					
+				last_direction = Vector2.LEFT
+					
 	if event.is_pressed():
 		self.play()
 	else:
@@ -42,9 +48,6 @@ func _input(event):
 
 func _physics_process(delta):
 	
-	if direction != Vector2.ZERO:
-		last_direction = direction
-		
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	
 	translate(direction * SPEED)

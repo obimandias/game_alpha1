@@ -5,12 +5,14 @@ var facing_direction = Vector2.ZERO
 
 var turn_frames: int = 0
 @export var MAX_TURN_FRAMES: int = 8
+@export var ANIMATION_WALK_SPEED: float = 2.0
+@export var ANIMATION_RUN_SPEED: float = 5.0
 
 var SPEED: float = 2.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	self.speed_scale = ANIMATION_WALK_SPEED
 
 func _input(event):
 				#
@@ -47,10 +49,10 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("Run"):
 		SPEED = 5.0
-		self.speed_scale = 2
+		self.speed_scale = ANIMATION_RUN_SPEED
 	elif Input.is_action_just_released("Run"):
 		SPEED = 2.0
-		self.speed_scale = 1
+		self.speed_scale = ANIMATION_WALK_SPEED
 	
 	translate(direction * SPEED)
 	

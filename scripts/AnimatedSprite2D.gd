@@ -39,6 +39,8 @@ func _physics_process(delta):
 	
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	
+	print(direction)
+	
 	if Input.is_action_just_pressed("Run"):
 		SPEED = 5.0
 		self.speed_scale = 2
@@ -47,28 +49,51 @@ func _physics_process(delta):
 		self.speed_scale = 1
 	
 	translate(direction * SPEED)
-	if direction == Vector2.RIGHT:
+	
+	if direction.x > 0:
 		
-		if last_horizontal_direction == Vector2.LEFT:
-			self.animation = "front"
+		if direction.y == 0:
 			
-			check_turn_frames_horizontal(Vector2.RIGHT)
-
-		else:
 			self.animation = "running"
 			self.flip_h = false
-			last_horizontal_direction = Vector2.RIGHT
-	elif direction == Vector2.LEFT:
-		
-		if last_horizontal_direction == Vector2.RIGHT:
-			self.animation = "front"
 			
-			check_turn_frames_horizontal(Vector2.LEFT)
+			#if last_horizontal_direction == Vector2.LEFT:
+				#self.animation = "front"
+				#
+				##check_turn_frames_horizontal(Vector2.RIGHT)
+#
+			#else:
+				#self.animation = "running"
+				#self.flip_h = false
+				#last_horizontal_direction = Vector2.RIGHT
+		elif direction.y > 0:
+			self.animation = "diagonal"
+			self.flip_h = false
 		else:
+			self.animation = "up_diagonal"
+			self.flip_h = false
+	elif direction.x < 0:
+		
+		if direction.y == 0:
+			
 			self.animation = "running"
 			self.flip_h = true
-	
-			last_horizontal_direction = Vector2.LEFT
+			#
+			#if last_horizontal_direction == Vector2.RIGHT:
+				#self.animation = "front"
+				#
+				#check_turn_frames_horizontal(Vector2.LEFT)
+			#else:
+				#self.animation = "running"
+				#self.flip_h = true
+		
+				#last_horizontal_direction = Vector2.LEFT
+		elif direction.y > 0:
+			self.animation = "diagonal"
+			self.flip_h = true
+		else:
+			self.animation = "up_diagonal"
+			self.flip_h = true
 	elif direction == Vector2.UP:
 
 		if last_vertical_direction == Vector2.DOWN:

@@ -22,38 +22,24 @@ func _input(event):
 func set_animation_by_angle(angle: float):
 	
 	if abs(angle) < PI / 2:
-
 		self.flip_h = false
-
-		if angle < - PI / 3:
-			self.animation = "back"
-		elif angle < - PI / 6:
-			self.animation = "up_diagonal"
-		elif angle < PI / 6:
-			self.animation = "running"
-		elif angle < PI / 3:
-			self.animation = "diagonal"
-		else:
-			self.animation = "front"
 	else:
-
 		if angle > 0:
 			angle = PI - angle
 		else:
 			angle = -PI - angle
-			
 		self.flip_h = true
-
-		if angle < - PI / 3:
-			self.animation = "back"
-		elif angle < - PI / 6:
-			self.animation = "up_diagonal"
-		elif angle < PI / 6:
-			self.animation = "running"
-		elif angle < PI / 3:
-			self.animation = "diagonal"
-		else:
-			self.animation = "front"
+			
+	if angle < - PI / 3:
+		self.animation = "back"
+	elif angle < - PI / 6:
+		self.animation = "up_diagonal"
+	elif angle < PI / 6:
+		self.animation = "running"
+	elif angle < PI / 3:
+		self.animation = "diagonal"
+	else:
+		self.animation = "front"
 
 func _physics_process(delta):
 	
@@ -69,7 +55,7 @@ func _physics_process(delta):
 	translate(direction * SPEED)
 	
 	if direction != Vector2.ZERO:
-		facing_direction = facing_direction.slerp(direction, 0.2)
+		facing_direction = facing_direction.slerp(direction, 0.15)
 
 	set_animation_by_angle(facing_direction.angle())
 

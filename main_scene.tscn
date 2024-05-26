@@ -102,7 +102,7 @@ texture = ExtResource("1_cj1wv")
 texture_filter = 1
 position = Vector2(299, 250)
 sprite_frames = SubResource("SpriteFrames_76081")
-animation = &"front"
+animation = &"back"
 script = ExtResource("7_1vwm8")
 
 [node name="Level1+1" type="Sprite2D" parent="."]

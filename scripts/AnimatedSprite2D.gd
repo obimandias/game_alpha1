@@ -1,10 +1,11 @@
 extends AnimatedSprite2D
 
 var direction = Vector2.ZERO
-var last_direction = Vector2.ZERO
+var last_horizontal_direction = Vector2.ZERO
+var last_vertical_direction = Vector2.ZERO
 
 var turn_frames: int = 0
-var MAX_TURN_FRAMES: int = 8
+@export var MAX_TURN_FRAMES: int = 8
 var acceleration = Vector2.ZERO
 
 var SPEED: float = 2.0
@@ -20,10 +21,17 @@ func _input(event):
 	else:
 		self.stop()
 
-func check_turn_frames(target: Vector2):
+func check_turn_frames_horizontal(target: Vector2):
 	if turn_frames >= MAX_TURN_FRAMES:
 		turn_frames = 0
-		last_direction = target
+		last_horizontal_direction = target
+	else:
+		turn_frames += 1
+
+func check_turn_frames_vertical(target: Vector2):
+	if turn_frames >= MAX_TURN_FRAMES:
+		turn_frames = 0
+		last_vertical_direction = target
 	else:
 		turn_frames += 1
 
@@ -41,35 +49,44 @@ func _physics_process(delta):
 	translate(direction * SPEED)
 	if direction == Vector2.RIGHT:
 		
-		if last_direction == Vector2.LEFT:
+		if last_horizontal_direction == Vector2.LEFT:
 			self.animation = "front"
 			
-			check_turn_frames(Vector2.RIGHT)
+			check_turn_frames_horizontal(Vector2.RIGHT)
 
 		else:
 			self.animation = "running"
 			self.flip_h = false
-			last_direction = Vector2.RIGHT
+			last_horizontal_direction = Vector2.RIGHT
 	elif direction == Vector2.LEFT:
 		
-		if last_direction == Vector2.RIGHT:
+		if last_horizontal_direction == Vector2.RIGHT:
 			self.animation = "front"
 			
-			check_turn_frames(Vector2.LEFT)
+			check_turn_frames_horizontal(Vector2.LEFT)
 		else:
 			self.animation = "running"
 			self.flip_h = true
 	
-			last_direction = Vector2.LEFT
+			last_horizontal_direction = Vector2.LEFT
 	elif direction == Vector2.UP:
-		self.animation = "front"
-		self.flip_h = false
+
+		if last_vertical_direction == Vector2.DOWN:
+			self.animation = "running"
+
+			check_turn_frames_vertical(Vector2.UP)
+		else:
+			self.animation = "back"
+			last_vertical_direction = Vector2.UP
+
 	elif direction == Vector2.DOWN:
-		self.animation = "front"
-		self.flip_h = false
-		
-	
-		
+		if last_vertical_direction == Vector2.UP:
+			self.animation = "running"
+
+			check_turn_frames_vertical(Vector2.DOWN)
+		else:
+			self.animation = "front"
+			last_vertical_direction = Vector2.DOWN
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

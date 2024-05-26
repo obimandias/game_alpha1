@@ -39,7 +39,7 @@ func _physics_process(delta):
 	
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	
-	print(direction)
+	#print(direction)
 	
 	if Input.is_action_just_pressed("Run"):
 		SPEED = 5.0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://burmf5pa0ucpu"]
+[gd_scene load_steps=20 format=3 uid="uid://burmf5pa0ucpu"]
 
 [ext_resource type="Texture2D" uid="uid://c674bexbkdfor" path="res://sprites/Running front/Running front - 0.png" id="1_5eojm"]
+[ext_resource type="Texture2D" uid="uid://bvb5rofrnpnnn" path="res://backdrops/level1+0.png" id="1_cj1wv"]
 [ext_resource type="Texture2D" uid="uid://cqe7latm8digb" path="res://sprites/Running back/Godot 1 - 0.png" id="1_wwc4k"]
 [ext_resource type="Texture2D" uid="uid://khoxgrigii1d" path="res://sprites/Running front/Running front - 1.png" id="2_178q4"]
 [ext_resource type="Texture2D" uid="uid://curkw3ivehiyi" path="res://sprites/Running back/Godot 1 - 1.png" id="2_iyuxy"]
@@ -16,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://0swue7fb635e" path="res://sprites/Running up diagonal/Godot 1 - 0.png" id="13_pgfrh"]
 [ext_resource type="Texture2D" uid="uid://82rp1lv6rlpd" path="res://sprites/Running up diagonal/Godot 1 - 1.png" id="14_660ji"]
 [ext_resource type="Texture2D" uid="uid://ct7h6am1hshij" path="res://sprites/Running up diagonal/Godot 1 - 2.png" id="15_x1byw"]
+[ext_resource type="Texture2D" uid="uid://blheopv0et1lp" path="res://backdrops/level1+1.png" id="18_yjdba"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_76081"]
 animations = [{
@@ -92,9 +94,17 @@ animations = [{
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Level1+0" type="Sprite2D" parent="."]
+position = Vector2(964, 543)
+texture = ExtResource("1_cj1wv")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(299, 250)
 sprite_frames = SubResource("SpriteFrames_76081")
 animation = &"front"
 script = ExtResource("7_1vwm8")
+
+[node name="Level1+1" type="Sprite2D" parent="."]
+position = Vector2(960, 541)
+texture = ExtResource("18_yjdba")

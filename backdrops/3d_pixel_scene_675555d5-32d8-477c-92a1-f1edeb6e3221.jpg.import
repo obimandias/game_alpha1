@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqe7latm8digb"
-path.s3tc="res://.godot/imported/Godot 1 - 0.png-e05bfed1a32d7585212099f2f2b7ee74.s3tc.ctex"
+uid="uid://crl68isp618lg"
+path.s3tc="res://.godot/imported/3d_pixel_scene_675555d5-32d8-477c-92a1-f1edeb6e3221.jpg-d54607827f9c046a84d3fc13ca81442f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "df9139f2bf1da9ff173dea08df6442b7"
+}
 
 [deps]
 
-source_file="res://sprites/Running back/Godot 1 - 0.png"
-dest_files=["res://.godot/imported/Godot 1 - 0.png-e05bfed1a32d7585212099f2f2b7ee74.s3tc.ctex"]
+source_file="res://backdrops/3d_pixel_scene_675555d5-32d8-477c-92a1-f1edeb6e3221.jpg"
+dest_files=["res://.godot/imported/3d_pixel_scene_675555d5-32d8-477c-92a1-f1edeb6e3221.jpg-d54607827f9c046a84d3fc13ca81442f.s3tc.ctex"]
 
 [params]
 

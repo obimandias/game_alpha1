@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkxg4ndhavhcm"]
+
+[ext_resource type="SpriteFrames" uid="uid://dwq4nquii0irb" path="res://main_animated_sprite.tres" id="2_mh6qd"]
+[ext_resource type="Script" path="res://scripts/AnimatedSprite3D.gd" id="2_yh6c0"]
+[ext_resource type="PackedScene" uid="uid://b2k266k6psw8u" path="res://backdrops/imported.tscn" id="3_l72eh"]
+[ext_resource type="Texture2D" uid="uid://crl68isp618lg" path="res://backdrops/3d_pixel_scene_675555d5-32d8-477c-92a1-f1edeb6e3221.jpg" id="4_p6p54"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_pllqv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7vucs"]
+albedo_texture = ExtResource("4_p6p54")
+emission_enabled = true
+emission_energy_multiplier = 0.21
+emission_texture = ExtResource("4_p6p54")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.572119, -0.0229312, -0.81985, 0, 0.999609, -0.0279591, 0.82017, 0.015996, 0.571896, -28.2474, -1.02305, 23.3859)
+fov = 67.2
+near = 0.039
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-0.999998, -0.000721958, -0.00163041, -0.000720795, 1, -0.000712011, 0.00163092, -0.000710831, -0.999998, -23.9821, -1.30672, 22.3975)
+pixel_size = 0.0025
+billboard = 1
+sprite_frames = ExtResource("2_mh6qd")
+animation = &"back"
+script = ExtResource("2_yh6c0")
+
+[node name="3d_pixel_scene" parent="." instance=ExtResource("3_l72eh")]
+transform = Transform3D(-0.999998, -0.000721958, -0.00163041, -0.000720795, 1, -0.000712011, 0.00163092, -0.000710831, -0.999998, -23.9827, -0.00154686, 19.968)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(77.5744, 6.77585, -128.204, -6.71742, 149.8, 3.85263, 128.207, 3.74891, 77.7744, 11.9728, -17.0819, -10.0075)
+mesh = SubResource("QuadMesh_pllqv")
+surface_material_override/0 = SubResource("StandardMaterial3D_7vucs")

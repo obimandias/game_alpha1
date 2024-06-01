@@ -1,4 +1,4 @@
-extends AnimatedSprite2D
+extends Area2D
 
 var direction = Vector2.ZERO
 var facing_direction = Vector2.ZERO
@@ -10,47 +10,51 @@ var turn_frames: int = 0
 @export var ANIMATION_WALK_SPEED: float = 2.0
 @export var ANIMATION_RUN_SPEED: float = 5.0
 
+@onready var sprite = $sprite
+
 var SPEED: float = 3
 
-# Called when the node enters the scene tree for the first time.
+signal points_up
+
 func _ready():
-	self.speed_scale = ANIMATION_WALK_SPEED
+	sprite.speed_scale = ANIMATION_WALK_SPEED
 	var viewport = self.get_viewport();
 	visible_rect = viewport.get_visible_rect()
-
-
-func _input(event):
-				#
-	if event.is_pressed():
-		self.play()
-	else:
-		self.stop()
+	self.monitorable = true
+	self.monitoring = true
+	self.area_entered.connect(on_area_entered)
+	
 
 func set_animation_by_angle(angle: float):
 	
 	if abs(angle) < PI / 2:
-		self.flip_h = false
+		sprite.flip_h = false
 	else:
 		if angle > 0:
 			angle = PI - angle
 		else:
 			angle = -PI - angle
-		self.flip_h = true
+		sprite.flip_h = true
 			
 	if angle < - PI / 3:
-		self.animation = "back"
+		sprite.animation = "back"
 	elif angle < - PI / 6:
-		self.animation = "up_diagonal"
+		sprite.animation = "up_diagonal"
 	elif angle < PI / 6:
-		self.animation = "running"
+		sprite.animation = "running"
 	elif angle < PI / 3:
-		self.animation = "diagonal"
+		sprite.animation = "diagonal"
 	else:
-		self.animation = "front"
+		sprite.animation = "front"
 
 func _physics_process(delta):
 	
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
+	
+	if direction == Vector2.ZERO:
+		sprite.stop()
+	else:
+		sprite.play()
 	
 	if Input.is_action_just_pressed("Run"):
 		SPEED = 5.0
@@ -73,8 +77,11 @@ func _physics_process(delta):
 	self.scale = Vector2(new_scale, new_scale)
 	
 	
-	
-
-
 func _process(delta):
 	pass
+
+func on_area_entered(area: Area2D):
+	print("HIT1")
+	if area.is_in_group("loot"):
+		print("HIT2")
+		area.queue_free()

@@ -58,10 +58,10 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("Run"):
 		SPEED = 5.0
-		self.speed_scale = ANIMATION_RUN_SPEED
+		sprite.speed_scale = ANIMATION_RUN_SPEED
 	elif Input.is_action_just_released("Run"):
 		SPEED = 2.0
-		self.speed_scale = ANIMATION_WALK_SPEED
+		sprite.speed_scale = ANIMATION_WALK_SPEED
 	
 	if direction == Vector2.UP or direction == Vector2.DOWN:	
 		translate(direction * SPEED/3)

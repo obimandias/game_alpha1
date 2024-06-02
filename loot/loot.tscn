@@ -1,18 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://bw6ghp3vu0maf"]
+[gd_scene load_steps=9 format=3 uid="uid://bw6ghp3vu0maf"]
 
 [ext_resource type="Script" path="res://loot/loot.gd" id="1_l2k4f"]
-[ext_resource type="Texture2D" uid="uid://cvxscfhegql53" path="res://icon.svg" id="1_sgqsi"]
+[ext_resource type="Texture2D" uid="uid://cgbfym648j1am" path="res://loot/key/key_1.PNG" id="2_bm1h4"]
+[ext_resource type="Texture2D" uid="uid://0tq2c0kg2ymn" path="res://loot/key/key_2.PNG" id="3_n0j5u"]
+[ext_resource type="Texture2D" uid="uid://cma7kjkp75m6y" path="res://loot/key/key_3.PNG" id="4_nwiks"]
+[ext_resource type="Texture2D" uid="uid://f0y1gvlcl8xh" path="res://loot/key/key_4.PNG" id="5_b6eg3"]
+[ext_resource type="Texture2D" uid="uid://bmybdam6js2i4" path="res://loot/key/key_5.PNG" id="6_kk7qg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfwn4"]
-size = Vector2(82, 26)
+size = Vector2(63, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rfj37"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bm1h4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n0j5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nwiks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_b6eg3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kk7qg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_l2k4f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 27)
+position = Vector2(-38.5, 38.5)
 shape = SubResource("RectangleShape2D_nfwn4")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.445, 0.445)
-texture = ExtResource("1_sgqsi")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.465, 0.465)
+sprite_frames = SubResource("SpriteFrames_rfj37")
+autoplay = "default"
+frame_progress = 0.953261

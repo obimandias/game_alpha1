@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://burmf5pa0ucpu"]
+[gd_scene load_steps=22 format=3 uid="uid://burmf5pa0ucpu"]
 
 [ext_resource type="PackedScene" uid="uid://da0v7sbipiuu4" path="res://player/playertscn.tscn" id="2_8e7nc"]
 [ext_resource type="Texture2D" uid="uid://hg5eubis32dm" path="res://sprites/shadow.png" id="2_68tli"]
@@ -13,6 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://byh5pls42mnbi" path="res://assets/sword/sword-6.png" id="11_sb4gy"]
 [ext_resource type="Texture2D" uid="uid://6wil62rrvvlc" path="res://assets/sword/sword-7.png" id="12_kr5hq"]
 [ext_resource type="Texture2D" uid="uid://buotnlsdv562d" path="res://assets/rock/rock1.png" id="14_m6xhs"]
+[ext_resource type="Texture2D" uid="uid://bqf1rbcbmkut8" path="res://sprites/bug/flying/bug-flying-0.png" id="15_a3gff"]
+[ext_resource type="Texture2D" uid="uid://bi4niraamsmnq" path="res://sprites/skeleton/walking/skeleton_walking_0.PNG" id="15_oh620"]
+[ext_resource type="Texture2D" uid="uid://cshbro1v07of" path="res://sprites/bug/flying/bug-flying-1.png" id="16_7bjor"]
+[ext_resource type="Texture2D" uid="uid://dj33od3tqo73h" path="res://sprites/skeleton/walking/skeleton_walking_1.PNG" id="16_tp2i4"]
 [ext_resource type="PackedScene" uid="uid://bw6ghp3vu0maf" path="res://loot/loot.tscn" id="18_k6cof"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l73lp"]
@@ -47,6 +51,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ih1n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_oh620")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_tp2i4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_omgse"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_a3gff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7bjor")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 
@@ -75,9 +107,8 @@ position = Vector2(1631, 804)
 scale = Vector2(0.314732, 0.314732)
 sprite_frames = SubResource("SpriteFrames_l73lp")
 autoplay = "default"
-frame_progress = 0.419788
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="sword"]
+[node name="sword_animation" type="AnimationPlayer" parent="sword"]
 
 [node name="Shadow" type="Sprite2D" parent="sword"]
 position = Vector2(9.53198, 247.83)
@@ -88,3 +119,25 @@ texture = ExtResource("2_68tli")
 position = Vector2(1479, 838)
 scale = Vector2(0.698661, 0.647346)
 texture = ExtResource("14_m6xhs")
+
+[node name="skeleton" type="AnimatedSprite2D" parent="."]
+position = Vector2(1477, 541)
+scale = Vector2(0.129062, 0.129062)
+sprite_frames = SubResource("SpriteFrames_3ih1n")
+autoplay = "default"
+
+[node name="Shadow" type="Sprite2D" parent="skeleton"]
+position = Vector2(15.4968, 774.819)
+scale = Vector2(5.16546, 4.44804)
+texture = ExtResource("2_68tli")
+
+[node name="bug" type="AnimatedSprite2D" parent="."]
+position = Vector2(1172, 646)
+scale = Vector2(0.10375, 0.10375)
+sprite_frames = SubResource("SpriteFrames_omgse")
+autoplay = "default"
+
+[node name="Shadow" type="Sprite2D" parent="bug"]
+position = Vector2(57.831, 1166.26)
+scale = Vector2(6.4257, 4.46229)
+texture = ExtResource("2_68tli")

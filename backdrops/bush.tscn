@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyq5jmj1hfh08"]
+
+[ext_resource type="Texture2D" uid="uid://dt0kyga64xpsc" path="res://assets/bush/pixil-frame-0.png" id="1_2md40"]
+[ext_resource type="Texture2D" uid="uid://clkm3pdnye6xw" path="res://assets/bush/pixil-frame-1.png" id="2_vtfom"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jxwxw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2md40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vtfom")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+position = Vector2(-4, -11)
+scale = Vector2(1.17584, 1.15326)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(57.75, 61.75)
+scale = Vector2(0.0690625, 0.0690625)
+sprite_frames = SubResource("SpriteFrames_jxwxw")
+autoplay = "default"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(5.25843, 4.28381)
+scale = Vector2(1.22666, 1.22666)
+polygon = PackedVector2Array(14, 89, 78, 89, 86, 32, 65, 7, 16, 6, 2, 48, 2, 72, 13, 88)

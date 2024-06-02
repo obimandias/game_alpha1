@@ -1,15 +1,61 @@
-[gd_scene load_steps=5 format=3 uid="uid://burmf5pa0ucpu"]
+[gd_scene load_steps=16 format=3 uid="uid://burmf5pa0ucpu"]
 
 [ext_resource type="PackedScene" uid="uid://da0v7sbipiuu4" path="res://player/playertscn.tscn" id="2_8e7nc"]
+[ext_resource type="Texture2D" uid="uid://hg5eubis32dm" path="res://sprites/shadow.png" id="2_68tli"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="3_jpt6v"]
 [ext_resource type="PackedScene" uid="uid://b76ly8jtpmr23" path="res://assets/tree/tree.tscn" id="4_uris8"]
+[ext_resource type="Texture2D" uid="uid://0u70ko8lrm3v" path="res://assets/sword/sword-0.png" id="5_p2pig"]
+[ext_resource type="Texture2D" uid="uid://clv58v4gobfhi" path="res://assets/sword/sword-1.png" id="6_16buh"]
+[ext_resource type="Texture2D" uid="uid://b5t1bdrlpcgx3" path="res://assets/sword/sword-2.png" id="7_veyv3"]
+[ext_resource type="Texture2D" uid="uid://0rqwd6twmkuq" path="res://assets/sword/sword-3.png" id="8_qketd"]
+[ext_resource type="Texture2D" uid="uid://c1wc02xblxseq" path="res://assets/sword/sword-4.png" id="9_5a7i8"]
+[ext_resource type="Texture2D" uid="uid://34out3w3y4q3" path="res://assets/sword/sword-5.png" id="10_e8olj"]
+[ext_resource type="Texture2D" uid="uid://byh5pls42mnbi" path="res://assets/sword/sword-6.png" id="11_sb4gy"]
+[ext_resource type="Texture2D" uid="uid://6wil62rrvvlc" path="res://assets/sword/sword-7.png" id="12_kr5hq"]
+[ext_resource type="Texture2D" uid="uid://buotnlsdv562d" path="res://assets/rock/rock1.png" id="14_m6xhs"]
 [ext_resource type="PackedScene" uid="uid://bw6ghp3vu0maf" path="res://loot/loot.tscn" id="18_k6cof"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l73lp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_p2pig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_16buh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_veyv3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qketd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5a7i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_e8olj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_sb4gy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_kr5hq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 
 [node name="player" parent="." instance=ExtResource("2_8e7nc")]
-position = Vector2(830, 320)
+position = Vector2(876, 301)
+
+[node name="Shadow" type="Sprite2D" parent="player"]
+position = Vector2(3, 13)
+texture = ExtResource("2_68tli")
 
 [node name="loot" parent="." instance=ExtResource("18_k6cof")]
 position = Vector2(365, 519)
@@ -23,3 +69,22 @@ wait_time = 3.0
 
 [node name="tree" parent="." instance=ExtResource("4_uris8")]
 position = Vector2(935, 370)
+
+[node name="sword" type="AnimatedSprite2D" parent="."]
+position = Vector2(1631, 804)
+scale = Vector2(0.314732, 0.314732)
+sprite_frames = SubResource("SpriteFrames_l73lp")
+autoplay = "default"
+frame_progress = 0.419788
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="sword"]
+
+[node name="Shadow" type="Sprite2D" parent="sword"]
+position = Vector2(9.53198, 247.83)
+scale = Vector2(1.71325, 1.94169)
+texture = ExtResource("2_68tli")
+
+[node name="Rock1" type="Sprite2D" parent="."]
+position = Vector2(1479, 838)
+scale = Vector2(0.698661, 0.647346)
+texture = ExtResource("14_m6xhs")

@@ -37,11 +37,12 @@ animations = [{
 script = ExtResource("1_l2k4f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-38.5, 38.5)
+position = Vector2(0.779999, -0.220001)
 shape = SubResource("RectangleShape2D_nfwn4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
+position = Vector2(39.28, -38.72)
 scale = Vector2(0.465, 0.465)
 sprite_frames = SubResource("SpriteFrames_rfj37")
 autoplay = "default"

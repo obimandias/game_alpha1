@@ -1,31 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://burmf5pa0ucpu"]
+[gd_scene load_steps=5 format=3 uid="uid://burmf5pa0ucpu"]
 
 [ext_resource type="PackedScene" uid="uid://da0v7sbipiuu4" path="res://player/playertscn.tscn" id="2_8e7nc"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="3_jpt6v"]
-[ext_resource type="Texture2D" uid="uid://uec24isttp5x" path="res://assets/tree/IMG_0213.PNG" id="4_wkh0f"]
-[ext_resource type="Texture2D" uid="uid://cw43bhegxa3hh" path="res://assets/tree/IMG_0214.PNG" id="5_3uman"]
+[ext_resource type="PackedScene" uid="uid://b76ly8jtpmr23" path="res://assets/tree/tree.tscn" id="4_uris8"]
 [ext_resource type="PackedScene" uid="uid://bw6ghp3vu0maf" path="res://loot/loot.tscn" id="18_k6cof"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_siqhg"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_wkh0f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_3uman")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}]
 
 [node name="Node2D" type="Node2D"]
 y_sort_enabled = true
 
 [node name="player" parent="." instance=ExtResource("2_8e7nc")]
-y_sort_enabled = true
-position = Vector2(322, 297)
+position = Vector2(830, 320)
 
 [node name="loot" parent="." instance=ExtResource("18_k6cof")]
 position = Vector2(365, 519)
@@ -37,9 +21,5 @@ spawn = ExtResource("18_k6cof")
 [node name="Timer" type="Timer" parent="spawner"]
 wait_time = 3.0
 
-[node name="tree" type="AnimatedSprite2D" parent="."]
-position = Vector2(890, 231)
-scale = Vector2(0.53125, 0.53125)
-sprite_frames = SubResource("SpriteFrames_siqhg")
-autoplay = "default"
-frame_progress = 0.279245
+[node name="tree" parent="." instance=ExtResource("4_uris8")]
+position = Vector2(935, 370)

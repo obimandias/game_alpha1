@@ -93,14 +93,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Area2D" type="Area2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+y_sort_enabled = true
 script = ExtResource("1_dhya6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3.75, 131)
+position = Vector2(-0.25, -14)
 shape = SubResource("RectangleShape2D_vkdq8")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(-4, -145)
 sprite_frames = SubResource("SpriteFrames_76081")
 animation = &"diagonal"

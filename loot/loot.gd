@@ -7,10 +7,10 @@ func _ready():
 	visible_rect = viewport.get_visible_rect()
 	var new_scale = remap(self.position.y,0, visible_rect.size.y, 0.2, 1.5)
 	self.scale = Vector2(new_scale, new_scale)
-	self.add_to_group("loot")
+	self.body_entered.connect(on_body_entered)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+func on_body_entered(body: Node2D):
+	if body.is_in_group("player"):
+		print("hit")
+		self.queue_free()

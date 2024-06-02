@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 var direction = Vector2.ZERO
 var facing_direction = Vector2.ZERO
@@ -12,7 +12,7 @@ var turn_frames: int = 0
 
 @onready var sprite = $sprite
 
-var SPEED: float = 3
+var SPEED: float = 1.0
 
 signal points_up
 
@@ -20,9 +20,7 @@ func _ready():
 	sprite.speed_scale = ANIMATION_WALK_SPEED
 	var viewport = self.get_viewport();
 	visible_rect = viewport.get_visible_rect()
-	self.monitorable = true
-	self.monitoring = true
-	self.area_entered.connect(on_area_entered)
+
 	
 
 func set_animation_by_angle(angle: float):
@@ -60,13 +58,15 @@ func _physics_process(delta):
 		SPEED = 5.0
 		sprite.speed_scale = ANIMATION_RUN_SPEED
 	elif Input.is_action_just_released("Run"):
-		SPEED = 2.0
+		SPEED = 1.0
 		sprite.speed_scale = ANIMATION_WALK_SPEED
 	
-	if direction == Vector2.UP or direction == Vector2.DOWN:	
-		translate(direction * SPEED/3)
+	if direction == Vector2.UP or direction == Vector2.DOWN:
+		move_and_collide(direction * SPEED)	
+		
 	else:
-		translate(direction * SPEED)
+		move_and_collide(direction * SPEED * 3)
+		
 	
 	if direction != Vector2.ZERO:
 		facing_direction = facing_direction.slerp(direction, 0.15)
@@ -79,9 +79,3 @@ func _physics_process(delta):
 	
 func _process(delta):
 	pass
-
-func on_area_entered(area: Area2D):
-	print("HIT1")
-	if area.is_in_group("loot"):
-		print("HIT2")
-		area.queue_free()

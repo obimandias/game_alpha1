@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://burmf5pa0ucpu"]
+[gd_scene load_steps=40 format=3 uid="uid://burmf5pa0ucpu"]
 
 [ext_resource type="PackedScene" uid="uid://da0v7sbipiuu4" path="res://player/playertscn.tscn" id="2_8e7nc"]
 [ext_resource type="Texture2D" uid="uid://hg5eubis32dm" path="res://sprites/shadow.png" id="2_68tli"]
@@ -19,13 +19,20 @@
 [ext_resource type="Texture2D" uid="uid://dj33od3tqo73h" path="res://sprites/skeleton/walking/skeleton_walking_1.PNG" id="16_tp2i4"]
 [ext_resource type="PackedScene" uid="uid://bw6ghp3vu0maf" path="res://loot/loot.tscn" id="18_k6cof"]
 [ext_resource type="PackedScene" uid="uid://dnppg3qs204vr" path="res://backdrops/Bush_line.tscn" id="19_acqjm"]
+[ext_resource type="Texture2D" uid="uid://c1k22b5oayldo" path="res://assets/bow/pixil-frame-0.png" id="20_1g45v"]
 [ext_resource type="Texture2D" uid="uid://b1ravhm70gbpu" path="res://sprites/Running front/pixil-frame-0.png" id="20_y8ohx"]
 [ext_resource type="Texture2D" uid="uid://db8jye48g3yu" path="res://sprites/Running front/pixil-frame-1.png" id="21_2s5di"]
+[ext_resource type="Texture2D" uid="uid://brrwmp8wgmugs" path="res://assets/bow/pixil-frame-1.png" id="21_dh27v"]
+[ext_resource type="Texture2D" uid="uid://gcoosersmknt" path="res://assets/bow/pixil-frame-2.png" id="22_a0nb1"]
 [ext_resource type="Texture2D" uid="uid://ddufju1hwkeow" path="res://sprites/Running front/pixil-frame-2.png" id="22_j8wxk"]
 [ext_resource type="Texture2D" uid="uid://2itha024pi53" path="res://sprites/Running front/pixil-frame-3.png" id="23_076r3"]
+[ext_resource type="Texture2D" uid="uid://0ulsch4dxdaa" path="res://assets/bow/pixil-frame-3.png" id="23_ua84j"]
+[ext_resource type="Texture2D" uid="uid://bwlfd1wqewhep" path="res://assets/bow/pixil-frame-4.png" id="24_4mm7h"]
 [ext_resource type="Texture2D" uid="uid://ci82ru3n7w7d3" path="res://sprites/Running front/pixil-frame-4.png" id="24_qcdan"]
+[ext_resource type="Texture2D" uid="uid://cn8udiljiag8n" path="res://assets/bow/pixil-frame-5.png" id="25_4ufaf"]
 [ext_resource type="Texture2D" uid="uid://cnp7e54di7wf1" path="res://sprites/Running front/pixil-frame-5.png" id="25_eo7ee"]
 [ext_resource type="Texture2D" uid="uid://c22jd40k85ihq" path="res://sprites/Running front/pixil-frame-6.png" id="26_42tpc"]
+[ext_resource type="Texture2D" uid="uid://dghwom5l7vtou" path="res://assets/bow/pixil-frame-6.png" id="26_f7kkn"]
 [ext_resource type="Texture2D" uid="uid://de3ksyrhagtv" path="res://sprites/Running front/pixil-frame-7.png" id="27_b4feg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l73lp"]
@@ -88,6 +95,35 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_8558n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_1g45v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_dh27v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_a0nb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ua84j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_4mm7h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_4ufaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_f7kkn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_fra5j"]
 animations = [{
 "frames": [{
@@ -147,7 +183,7 @@ wait_time = 3.0
 position = Vector2(935, 370)
 
 [node name="sword" type="AnimatedSprite2D" parent="."]
-position = Vector2(1631, 804)
+position = Vector2(1560, 808)
 scale = Vector2(0.314732, 0.314732)
 sprite_frames = SubResource("SpriteFrames_l73lp")
 autoplay = "default"
@@ -161,7 +197,7 @@ scale = Vector2(1.71325, 1.94169)
 texture = ExtResource("2_68tli")
 
 [node name="Rock1" type="Sprite2D" parent="."]
-position = Vector2(1720, 224)
+position = Vector2(1656, 208)
 scale = Vector2(0.698661, 0.647346)
 texture = ExtResource("14_m6xhs")
 
@@ -189,9 +225,26 @@ position = Vector2(57.831, 1166.26)
 scale = Vector2(6.4257, 4.46229)
 texture = ExtResource("2_68tli")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="bow" type="AnimatedSprite2D" parent="."]
+position = Vector2(156, 784)
+scale = Vector2(0.213007, 0.214684)
+sprite_frames = SubResource("SpriteFrames_8558n")
+autoplay = "default"
+frame_progress = 0.705156
+
+[node name="Shadow" type="Sprite2D" parent="bow"]
+position = Vector2(-44.5994, 560.127)
+scale = Vector2(8.60691, 2.32901)
+texture = ExtResource("2_68tli")
+
+[node name="sensei" type="AnimatedSprite2D" parent="."]
 position = Vector2(1784, 760)
 scale = Vector2(0.326562, 0.326562)
 sprite_frames = SubResource("SpriteFrames_fra5j")
 autoplay = "default"
-frame_progress = 0.316911
+frame_progress = 0.706961
+
+[node name="Shadow" type="Sprite2D" parent="sensei"]
+position = Vector2(4.95911e-05, 464.689)
+scale = Vector2(3.0622, 1.87135)
+texture = ExtResource("2_68tli")

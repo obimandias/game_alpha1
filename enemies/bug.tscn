@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbe7oaldp28j1"]
+
+[ext_resource type="Texture2D" uid="uid://bqf1rbcbmkut8" path="res://sprites/bug/flying/bug-flying-0.png" id="1_jun62"]
+[ext_resource type="Texture2D" uid="uid://cshbro1v07of" path="res://sprites/bug/flying/bug-flying-1.png" id="2_8phtm"]
+[ext_resource type="Texture2D" uid="uid://hg5eubis32dm" path="res://sprites/shadow.png" id="3_12tvu"]
+[ext_resource type="Script" path="res://scripts/State Machine/StateMachine.gd" id="4_qgx4j"]
+[ext_resource type="Script" path="res://enemies/States/Patrol.gd" id="5_2hu6m"]
+[ext_resource type="Script" path="res://enemies/States/Chase.gd" id="6_far76"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8eer7"]
+radius = 16.1697
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_omgse"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jun62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8phtm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Bug" type="Area2D"]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(20.6, 20.6)
+shape = SubResource("CircleShape2D_8eer7")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(0.10375, 0.10375)
+sprite_frames = SubResource("SpriteFrames_omgse")
+autoplay = "default"
+frame_progress = 0.560556
+offset = Vector2(0, -400)
+
+[node name="shadow" type="Sprite2D" parent="sprite"]
+position = Vector2(28.9157, 491.566)
+scale = Vector2(6.4257, 4.46229)
+texture = ExtResource("3_12tvu")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_qgx4j")
+initial_state = NodePath("Patrol")
+
+[node name="Patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("timer", "bug")]
+script = ExtResource("5_2hu6m")
+timer = NodePath("../../Timer")
+bug = NodePath("../..")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("6_far76")
+
+[node name="Timer" type="Timer" parent="."]

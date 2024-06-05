@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm428rk53tprj"]
+
+[ext_resource type="PackedScene" uid="uid://bbe7oaldp28j1" path="res://enemies/bug.tscn" id="1_kjwuu"]
+[ext_resource type="PackedScene" uid="uid://da0v7sbipiuu4" path="res://player/playertscn.tscn" id="2_xrx5v"]
+
+[node name="BugChase" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Area2D" parent="." instance=ExtResource("1_kjwuu")]
+position = Vector2(1164, 696)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_xrx5v")]
+position = Vector2(327, 547)
